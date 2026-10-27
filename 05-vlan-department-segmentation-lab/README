@@ -1,1 +1,137 @@
 
+# 🌐 VLAN Department Segmentation Lab
+
+![Cisco Packet Tracer](https://img.shields.io/badge/Cisco-Packet%20Tracer-049FD9?logo=cisco&logoColor=white)
+![Networking](https://img.shields.io/badge/Networking-VLANs-blue)
+![Level](https://img.shields.io/badge/Level-Beginner-green)
+
+## 📌 Project Overview
+
+This project demonstrates how to configure and organize Virtual Local Area Networks (VLANs) using Cisco Packet Tracer.
+
+The network uses a Cisco 2960 switch, a router, and six PCs divided into three departments: Engineering, Human Resources (HR), and Sales. Each department has its own VLAN and IP subnet.
+
+The purpose is to practice VLAN creation, access-port assignment, IP addressing, and network connectivity verification.
+
+## 🎯 Objectives
+
+- Understand the purpose of VLANs and network segmentation.
+- Create VLAN 10, VLAN 20, and VLAN 30.
+- Assign switch ports to the appropriate VLANs.
+- Configure IP addresses and subnet masks on end devices.
+- Verify VLAN configuration using Cisco IOS commands.
+- Test network connectivity using ping.
+- Understand the role of Layer 3 routing in inter-VLAN communication.
+
+## 🖥️ Network Topology
+
+![VLAN Lab Topology](screenshots/topology.png)
+
+*Figure 1: Three departmental VLANs connected to a Cisco 2960 switch.*
+
+## 🧰 Devices and Technologies
+
+| Device / Technology | Quantity | Purpose |
+|---|---:|---|
+| Cisco 2960 switch | 1 | VLAN creation and Layer 2 switching |
+| Router | 1 | Intended for routing between VLANs, if configured |
+| PCs | 6 | End devices for testing |
+| VLANs | 3 | Departmental network segmentation |
+| Cisco Packet Tracer | 1 | Network simulation |
+
+## 🏢 VLAN and IP Addressing Plan
+
+| Department | VLAN ID | Network | Example Hosts |
+|---|---:|---|---|
+| Engineering | 10 | `10.0.0.0/26` | `10.0.0.1`, `10.0.0.2` |
+| HR | 20 | `10.0.0.64/26` | `10.0.0.65`, `10.0.0.66` |
+| Sales | 30 | `10.0.0.128/26` | `10.0.0.129`, `10.0.0.130` |
+
+Each subnet uses a `/26` prefix (`255.255.255.192`), providing 62 usable IPv4 host addresses per subnet.
+
+## ⚙️ Implementation Steps
+
+1. Build the topology in Cisco Packet Tracer.
+2. Connect the six PCs to the switch and connect the router as shown in the topology.
+3. Create VLAN 10, VLAN 20, and VLAN 30.
+4. Assign the appropriate switch access ports to each VLAN.
+5. Configure each PC with its assigned IP address and subnet mask.
+6. Verify VLAN membership using `show vlan brief`.
+7. Test connectivity using ping and document the results.
+
+## 💻 Useful Cisco IOS Commands
+
+Create the departmental VLANs:
+
+```text
+enable
+configure terminal
+
+vlan 10
+ name ENGINEERING
+exit
+
+vlan 20
+ name HR
+exit
+
+vlan 30
+ name SALES
+exit
+```
+
+Example access-port configuration:
+
+```text
+interface fastEthernet 0/1
+ switchport mode access
+ switchport access vlan 10
+exit
+```
+
+Verify the VLANs and assigned ports:
+
+```text
+show vlan brief
+```
+
+*Note: Adjust interface names and port numbers to match your actual Packet Tracer topology.*
+
+## 🧪 Testing and Verification
+
+- Confirm that each PC has the correct IP address and subnet mask.
+- Verify that each switch port belongs to the intended VLAN.
+- Test communication between PCs in the same VLAN, if multiple PCs are available in that VLAN.
+- Test communication between different VLANs.
+- Record successful and unsuccessful ping results and investigate any unexpected behavior.
+
+**Important:** Inter-VLAN communication requires a configured Layer 3 routing function, appropriate gateway addresses, and correct routing configuration. The presence of a router in the topology alone does not guarantee connectivity between VLANs.
+
+## 📸 Screenshots
+
+| Screenshot | Description |
+|---|---|
+| `topology.png` | Complete network topology |
+| `vlan-configuration.png` | VLAN creation and access-port configuration |
+| `show-vlan-brief.png` | VLAN verification output |
+| `connectivity-test.png` | Ping test results |
+
+## 📂 Project Files
+
+- `VLAN-Department-Lab.pkt` — Cisco Packet Tracer project file.
+- `README.md` — Project documentation.
+- `screenshots/` — Topology, configuration, and testing screenshots.
+
+## 📚 Key Concepts Learned
+
+- Virtual Local Area Networks (VLANs)
+- Layer 2 network segmentation
+- Access ports
+- IPv4 addressing and subnetting
+- Broadcast domains
+- Cisco IOS configuration and verification
+- Inter-VLAN routing fundamentals
+
+## 👨‍💻 Mustafe-Haybe
+
+This project is part of my hands-on networking practice using Cisco Packet Tracer.
